@@ -18,9 +18,8 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: 'az bicep build --file main.bicep'
 
-    - task: PublishBuildArtifacts@1 
-      displayName: 'Publish infrastructure artifact' 
-      inputs: 
-        PathtoPublish: '$(Build.SourcesDirectory)/main.json'  
-        ArtifactName: 'main'  
-        publishLocation: 'Container' 
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)/main.json'
+        ArtifactName: 'main'
+        publishLocation: 'Container'
