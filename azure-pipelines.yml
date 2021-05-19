@@ -3,9 +3,6 @@ name: bicep-first-steps
 trigger:
 - main
 
-variables:
-  resourceGroupName: 'bicep'
-
 pool:
   vmImage: ubuntu-latest
 
