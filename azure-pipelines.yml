@@ -13,7 +13,7 @@ stages:
     steps:
     - task: AzureCLI@2
       inputs:
-        azureSubscription: 'Visual Studio Premium met MSDN(5cae1315-6366-491f-91e3-3d8ddeb580ef)'
+        azureSubscription: 'Visual Studio Enterprise – MPN'
         scriptType: 'pscore'
         scriptLocation: 'inlineScript'
         inlineScript: 'az bicep build --file main.bicep'
