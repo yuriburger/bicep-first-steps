@@ -50,6 +50,7 @@ resource site 'Microsoft.Web/sites@2020-06-01' = {
     serverFarmId: appPlan.id
     siteConfig: {
       linuxFxVersion: linuxFxVersion
+      ftpsState: 'Disabled'
     }
   }
   identity: {

@@ -30,7 +30,7 @@ resource sqlServer 'Microsoft.Sql/servers@2020-02-02-preview' = {
   properties: {
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorLoginPassword
-    // publicNetworkAccess: 'Disabled'
+    publicNetworkAccess: 'Disabled'
   }
 }
 

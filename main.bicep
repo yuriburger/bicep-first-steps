@@ -1,3 +1,4 @@
+// params
 @minLength(2)
 @description('Base name of the resource such as web app name and app service plan.')
 param webAppName string
@@ -16,6 +17,18 @@ param administratorLogin string
 @secure()
 param administratorLoginPassword string
 
+@minLength(2)
+@description('Object ID of the user with the default admin Access Policy')
+param adminObjectId string
+
+// vars
+var vNetId = vnet.outputs.vNetId
+var appSvcSubnetId = vnet.outputs.appSvcSubnetId
+var privateLinkSubnetId = vnet.outputs.privateLinkSubnetId
+var webAppObjectId = web.outputs.webAppObjectId
+var sqlServerId = sql.outputs.sqlServerId
+
+// modules
 module vnet './vnet.bicep' = {
   name: 'vnet'
   params: {
@@ -23,10 +36,6 @@ module vnet './vnet.bicep' = {
     env: env
   }
 }
-
-var vNetId = vnet.outputs.vNetId
-var appSvcSubnetId = vnet.outputs.appSvcSubnetId
-var privateLinkSubnetId = vnet.outputs.privateLinkSubnetId
 
 module web './webapp.bicep' = {
   name: 'web'
@@ -37,8 +46,6 @@ module web './webapp.bicep' = {
   }
 }
 
-var webAppObjectId = web.outputs.webAppObjectId
-
 module sql './sqlsingle.bicep' = {
   name: 'sql'
   params: {
@@ -48,8 +55,6 @@ module sql './sqlsingle.bicep' = {
     administratorLoginPassword: administratorLoginPassword
   }
 }
-
-var sqlServerId = sql.outputs.sqlServerId
 
 module endpoint './endpoint.bicep' = {
   name: 'endpoint'
@@ -62,11 +67,6 @@ module endpoint './endpoint.bicep' = {
   }
 }
 
-@minLength(2)
-@description('Object ID of the user with the default admin Access Policy')
-param adminObjectId string
-
-/*
 module kevyault 'keyvault.bicep' = {
   name: 'keyvault'
   params: {
@@ -76,4 +76,3 @@ module kevyault 'keyvault.bicep' = {
     adminObjectId: adminObjectId
   }
 }
-*/

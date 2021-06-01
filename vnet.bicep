@@ -47,6 +47,7 @@ resource subnet1 'Microsoft.Network/virtualNetworks/subnets@2020-05-01' = {
         }
       }
     ]
+    serviceEndpoints: []
   }
 }
 
